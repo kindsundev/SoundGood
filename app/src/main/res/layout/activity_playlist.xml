@@ -10,8 +10,8 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/cool_pink"
         android:layout_marginTop="2dp"
+        android:background="@color/cool_pink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,10 +20,11 @@
             android:id="@+id/backBtnPLA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_marginStart="5dp"
-            android:padding="5dp"
             android:backgroundTint="@android:color/transparent"
             android:contentDescription="@string/back_btn"
+            android:padding="5dp"
             android:src="@drawable/back_icon"
             app:tint="@android:color/white" />
 
@@ -41,10 +42,10 @@
         android:id="@+id/playlistRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:paddingBottom="40dp"
         android:scrollbarThumbVertical="@drawable/scroll_bar_icon"
         android:scrollbars="vertical"
-        android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
@@ -63,7 +64,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.9"
-        app:strokeWidth="2dp"
-        app:strokeColor="@color/cool_pink" />
+        app:strokeColor="@color/cool_pink"
+        app:strokeWidth="2dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

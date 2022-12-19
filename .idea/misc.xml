@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/drawable/add_icon.xml" value="0.2025" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/drawable/back_icon.xml" value="0.1665" />
+        <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/drawable/custom_search_view.xml" value="0.2025" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/drawable/favorite_empty_icon.xml" value="0.1665" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/drawable/favorite_icon.xml" value="0.1665" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1665" />
@@ -24,6 +25,7 @@
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/activity_player.xml" value="0.2" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/activity_playlist.xml" value="0.20526315789473684" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/activity_playlist_detail.xml" value="0.2" />
+        <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/activity_selection.xml" value="0.2" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/add_playlist_dialog.xml" value="0.19914529914529913" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/bottom_sheet_dialog.xml" value="0.2" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/favorite_view.xml" value="0.2" />

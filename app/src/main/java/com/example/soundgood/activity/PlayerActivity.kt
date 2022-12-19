@@ -73,6 +73,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
             "NowPlaying" -> { initNowPlaying() }
             "FavoriteShuffle" -> { initFavoriteShuffle() }
             "PlaylistDetailAdapter" -> { initPlaylistDetailAdapter() }
+            "PlaylistDetailShuffle" -> { initPlaylistDetailShuffle() }
         }
     }
 
@@ -128,7 +129,14 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         musicListPA = ArrayList()
         musicListPA.addAll(PlaylistActivity.musicPlaylist.ref[PlaylistDetailActivity.currentPlaylistPosition].playlist)
         setLayout()
+    }
 
+    private fun initPlaylistDetailShuffle() {
+        initializedService()
+        musicListPA = ArrayList()
+        musicListPA.addAll(PlaylistActivity.musicPlaylist.ref[PlaylistDetailActivity.currentPlaylistPosition].playlist)
+        musicListPA.shuffle()
+        setLayout()
     }
 
     private fun initializedService() {
