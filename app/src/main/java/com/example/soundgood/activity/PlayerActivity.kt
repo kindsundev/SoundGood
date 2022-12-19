@@ -10,7 +10,6 @@ import android.media.audiofx.AudioEffect
 import android.net.Uri
 import android.os.Bundle
 import android.os.IBinder
-import android.util.Log
 import android.widget.LinearLayout
 import android.widget.SeekBar
 import android.widget.Toast
@@ -62,7 +61,6 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
 
         initializedLayout()
         initializedListener()
-        Log.e(TAG, "onCreate: ")
     }
 
     private fun initializedLayout() {
@@ -73,6 +71,8 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
             "MainActivity" -> { initMainActivity() }
             "MusicAdapterSearch" -> { initMusicAdapterSearch() }
             "NowPlaying" -> { initNowPlaying() }
+            "FavoriteShuffle" -> { initFavoriteShuffle() }
+            "PlaylistDetailAdapter" -> { initPlaylistDetailAdapter() }
         }
     }
 
@@ -113,6 +113,22 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         binding.seekBarPA.max = musicService!!.mediaPlayer!!.duration
         if (isPlaying) binding.playPauseBtnPA.setIconResource(R.drawable.pause_icon)
         else binding.playPauseBtnPA.setIconResource(R.drawable.play_icon)
+    }
+
+    private fun initFavoriteShuffle() {
+        initializedService()
+        musicListPA = ArrayList()
+        musicListPA.addAll(FavoriteActivity.favoriteSongs)
+        musicListPA.shuffle()
+        setLayout()
+    }
+
+    private fun initPlaylistDetailAdapter() {
+        initializedService()
+        musicListPA = ArrayList()
+        musicListPA.addAll(PlaylistActivity.musicPlaylist.ref[PlaylistDetailActivity.currentPlaylistPosition].playlist)
+        setLayout()
+
     }
 
     private fun initializedService() {

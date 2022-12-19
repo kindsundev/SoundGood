@@ -9,7 +9,6 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -52,7 +51,6 @@ class MainActivity : AppCompatActivity() {
             retrievingFavoriteData()
         }
         initializedListeners()
-        Log.e(TAG, "onCreate: ", )
     }
 
     private fun initializedLayout() {
@@ -237,14 +235,8 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.e(TAG, "onStart: ", )
-    }
-
     override fun onResume() {
         super.onResume()
-        Log.e(TAG, "onResume: ", )
         storingFavoriteData()
     }
 

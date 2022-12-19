@@ -18,7 +18,8 @@ import com.example.soundgood.model.formatDuration
 
 class MusicAdapter(
     private val context: Context,
-    private var musicList: ArrayList<Music>
+    private var musicList: ArrayList<Music>,
+    private val playlistDetail : Boolean = false
 ) : RecyclerView.Adapter<MusicAdapter.MusicViewHolder>() {
 
     class MusicViewHolder(binding: MusicViewBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -32,17 +33,25 @@ class MusicAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MusicViewHolder {
         val view = MusicViewBinding.inflate(LayoutInflater.from(context), parent, false)
         val viewHolder = MusicViewHolder(view)
-
-        viewHolder.root.setOnClickListener {
-            val position = viewHolder.adapterPosition
-            when {
-                MainActivity.search -> sendIntent(ref = "MusicAdapterSearch", pos = position)
-                musicList[position].id == PlayerActivity.nowPlayingId ->
-                    sendIntent(ref = "NowPlaying", pos = PlayerActivity.songPosition)
-                else -> sendIntent(ref = "MusicAdapter", pos = position)
+        when {
+            playlistDetail -> {
+                viewHolder.root.setOnClickListener {
+                    val position = viewHolder.adapterPosition
+                    sendIntent(ref = "PlaylistDetailAdapter", pos = position)
+                }
+            }
+            else -> {
+                viewHolder.root.setOnClickListener {
+                    val position = viewHolder.adapterPosition
+                    when {
+                        MainActivity.search -> sendIntent(ref = "MusicAdapterSearch", pos = position)
+                        musicList[position].id == PlayerActivity.nowPlayingId ->
+                            sendIntent(ref = "NowPlaying", pos = PlayerActivity.songPosition)
+                        else -> sendIntent(ref = "MusicAdapter", pos = position)
+                    }
+                }
             }
         }
-
         return viewHolder
     }
 
@@ -58,10 +67,14 @@ class MusicAdapter(
         holder.title.text = musicList[position].title
         holder.album.text = musicList[position].album
         holder.duration.text = formatDuration(musicList[position].duration)
-        Glide.with(context)
-            .load(musicList[position].artUri)
-            .apply(RequestOptions().placeholder(R.drawable.sound_good_icon_slash_screen).centerCrop())
-            .into(holder.image)
+        try {
+            Glide.with(context)
+                .load(musicList[position].artUri)
+                .apply(RequestOptions().placeholder(R.drawable.sound_good_icon_slash_screen).centerCrop())
+                .into(holder.image)
+        } catch (e: Exception) {
+            return
+        }
     }
 
     override fun getItemCount(): Int = musicList.size
