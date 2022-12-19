@@ -9,6 +9,7 @@ import com.example.soundgood.R
 import com.example.soundgood.adapter.FavoriteAdapter
 import com.example.soundgood.databinding.ActivityFavoriteBinding
 import com.example.soundgood.model.Music
+import com.example.soundgood.model.checkPlaylist
 
 class FavoriteActivity : AppCompatActivity() {
     private val TAG = "FavoriteActivity"
@@ -29,6 +30,7 @@ class FavoriteActivity : AppCompatActivity() {
         setTheme(R.style.coolPink)
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        favoriteSongs = checkPlaylist(favoriteSongs)
         initFavoriteAdapter()
         if (favoriteSongs.size < 1) {
             binding.shuffleBtnFA.visibility = View.INVISIBLE

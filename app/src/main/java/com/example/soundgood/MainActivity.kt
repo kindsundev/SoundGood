@@ -21,9 +21,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.soundgood.activity.FavoriteActivity
 import com.example.soundgood.activity.PlayerActivity
 import com.example.soundgood.activity.PlaylistActivity
+import com.example.soundgood.activity.navigation.AboutActivity
+import com.example.soundgood.activity.navigation.FeedbackActivity
+import com.example.soundgood.activity.navigation.SettingActivity
 import com.example.soundgood.adapter.MusicAdapter
 import com.example.soundgood.databinding.ActivityMainBinding
 import com.example.soundgood.model.Music
+import com.example.soundgood.model.MusicPlaylist
 import com.example.soundgood.model.exitApplication
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.gson.GsonBuilder
@@ -31,7 +35,6 @@ import com.google.gson.reflect.TypeToken
 import java.io.File
 
 class MainActivity : AppCompatActivity() {
-    private val TAG = "MainActivity"
     private lateinit var binding: ActivityMainBinding
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var musicAdapter: MusicAdapter
@@ -41,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         lateinit var musicListMA: ArrayList<Music>
         lateinit var musicListSearch: ArrayList<Music>
         var search: Boolean = false
+        var themeIndex: Int = 0
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +58,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initializedLayout() {
+        val themeEditor = getSharedPreferences("THEMES", MODE_PRIVATE)
+        themeIndex = themeEditor.getInt("themeIndex", 0)
         search = false
         setTheme(R.style.coolPinkNav)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -135,9 +141,9 @@ class MainActivity : AppCompatActivity() {
         binding.playlistBtn.setOnClickListener { onCLickPlaylist() }
         binding.navView.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.navFeedback -> Toast.makeText(baseContext, "Feedback", Toast.LENGTH_SHORT).show()
-                R.id.navSettings -> Toast.makeText(baseContext, "Settings", Toast.LENGTH_SHORT).show()
-                R.id.navAbout -> Toast.makeText(baseContext, "About", Toast.LENGTH_SHORT).show()
+                R.id.navFeedback -> startActivity(Intent(this@MainActivity, FeedbackActivity::class.java))
+                R.id.navSettings -> startActivity(Intent(this@MainActivity, SettingActivity::class.java))
+                R.id.navAbout -> startActivity(Intent(this@MainActivity, AboutActivity::class.java))
                 R.id.navExit -> { onClickNavExit() }
             }
             true
@@ -248,21 +254,31 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun retrievingFavoriteData() {
-        FavoriteActivity.favoriteSongs = ArrayList()
         val editor = getSharedPreferences("FAVORITES", MODE_PRIVATE)
-        val jsonString = editor.getString("FavoriteSongs", null)
-        val typeToken = object : TypeToken<ArrayList<Music>>(){}.type
-        if (jsonString != null) {
-            val data : ArrayList<Music> = GsonBuilder().create().fromJson(jsonString, typeToken)
-            FavoriteActivity.favoriteSongs.addAll(data)
+
+        FavoriteActivity.favoriteSongs = ArrayList()
+        val jsonStringFavorite = editor.getString("FavoriteSongs", null)
+        val typeTokenFavorite = object : TypeToken<ArrayList<Music>>(){}.type
+        if (jsonStringFavorite != null) {
+            val dataFavorite : ArrayList<Music> = GsonBuilder().create().fromJson(jsonStringFavorite, typeTokenFavorite)
+            FavoriteActivity.favoriteSongs.addAll(dataFavorite)
+        }
+
+        PlaylistActivity.musicPlaylist = MusicPlaylist()
+        val jsonStringPlaylist = editor.getString("MusicPlaylist", null)
+        if (jsonStringPlaylist != null) {
+            val dataPlaylist : MusicPlaylist = GsonBuilder().create().fromJson(jsonStringPlaylist, MusicPlaylist::class.java)
+            PlaylistActivity.musicPlaylist = dataPlaylist
         }
     }
 
     @SuppressLint("CommitPrefEdits")
     fun storingFavoriteData() {
         val editor = getSharedPreferences("FAVORITES", MODE_PRIVATE).edit()
-        val jsonString = GsonBuilder().create().toJson(FavoriteActivity.favoriteSongs)
-        editor.putString("FavoriteSongs", jsonString)
+        val jsonStringFavorite = GsonBuilder().create().toJson(FavoriteActivity.favoriteSongs)
+        editor.putString("FavoriteSongs", jsonStringFavorite)
+        val jsonStringPlaylist = GsonBuilder().create().toJson(PlaylistActivity.musicPlaylist)
+        editor.putString("MusicPlaylist", jsonStringPlaylist)
         editor.apply()
     }
 }

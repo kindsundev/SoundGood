@@ -13,7 +13,9 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.soundgood.R
 import com.example.soundgood.adapter.MusicAdapter
 import com.example.soundgood.databinding.ActivityPlaylistDetailBinding
+import com.example.soundgood.model.checkPlaylist
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.gson.GsonBuilder
 
 class PlaylistDetailActivity : AppCompatActivity() {
 
@@ -35,6 +37,8 @@ class PlaylistDetailActivity : AppCompatActivity() {
         setTheme(R.style.coolPink)
         binding = ActivityPlaylistDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        PlaylistActivity.musicPlaylist.ref[currentPlaylistPosition].playlist =
+            checkPlaylist(playlist = PlaylistActivity.musicPlaylist.ref[currentPlaylistPosition].playlist)
         initAdapter()
     }
 
@@ -88,7 +92,7 @@ class PlaylistDetailActivity : AppCompatActivity() {
         bindLayout()
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
     private fun bindLayout() {
         binding.playlistNamePD.text = PlaylistActivity.musicPlaylist.ref[currentPlaylistPosition].name
         binding.totalSongPD.text = "Total songs: ${adapter.itemCount}"
@@ -107,6 +111,15 @@ class PlaylistDetailActivity : AppCompatActivity() {
             }
         }
 
-        initAdapter()
+        adapter.notifyDataSetChanged()
+        storingFavoriteData()
+    }
+
+    @SuppressLint("CommitPrefEdits")
+    fun storingFavoriteData() {
+        val editor = getSharedPreferences("FAVORITES", MODE_PRIVATE).edit()
+        val jsonStringPlaylist = GsonBuilder().create().toJson(PlaylistActivity.musicPlaylist)
+        editor.putString("MusicPlaylist", jsonStringPlaylist)
+        editor.apply()
     }
 }
