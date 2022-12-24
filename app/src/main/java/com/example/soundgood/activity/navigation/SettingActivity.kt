@@ -21,7 +21,7 @@ class SettingActivity : AppCompatActivity() {
     }
 
     private fun initializedLayout() {
-        setTheme(MainActivity.currentTheme[MainActivity.themeIndex])
+        setTheme(MainActivity.currentThemeNav[MainActivity.themeIndex])
         binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.title = "Setting"
@@ -42,6 +42,7 @@ class SettingActivity : AppCompatActivity() {
         binding.coolGreenTheme.setOnClickListener { saveTheme(3) }
         binding.coolBlackTheme.setOnClickListener { saveTheme(4) }
         binding.versionName.text = setVersionDetail()
+        binding.sortBtn.setOnClickListener { onClickSort() }
     }
 
     private fun saveTheme(index: Int) {
@@ -65,5 +66,23 @@ class SettingActivity : AppCompatActivity() {
 
     private fun setVersionDetail(): String {
         return "Version name: ${BuildConfig.VERSION_NAME}"
+    }
+
+    private fun onClickSort() {
+        val menuList = arrayOf("Recently Added", "Song Title", "File Size")
+        var currentSort = MainActivity.sortOrder
+        val builder = MaterialAlertDialogBuilder(this)
+        builder.setTitle("Sorting")
+            .setPositiveButton("OK"){_, _ ->
+                val editor = getSharedPreferences("SORTING", MODE_PRIVATE).edit()
+                editor.putInt("sortOrder", currentSort)
+                editor.apply()
+            }
+            .setSingleChoiceItems(menuList, currentSort) { _, which ->
+                currentSort = which
+            }
+        val customDialog = builder.create()
+        customDialog.show()
+        customDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.RED)
     }
 }

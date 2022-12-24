@@ -11,6 +11,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
@@ -45,10 +46,23 @@ class MainActivity : AppCompatActivity() {
         lateinit var musicListSearch: ArrayList<Music>
         var search: Boolean = false
         var themeIndex: Int = 0
-        val currentTheme = arrayOf(R.style.coolPink, R.style.coolBlue, R.style.coolPurple,
-                                    R.style.coolGreen, R.style.coolBlack)
-        val currentThemeNav = arrayOf(R.style.coolPinkNav, R.style.coolBlueNav, R.style.coolPurpleNav,
-                                    R.style.coolGreenNav, R.style.coolBlackNav)
+        val currentTheme = arrayOf(
+            R.style.coolPink, R.style.coolBlue, R.style.coolPurple,
+            R.style.coolGreen, R.style.coolBlack
+        )
+        val currentThemeNav = arrayOf(
+            R.style.coolPinkNav, R.style.coolBlueNav, R.style.coolPurpleNav,
+            R.style.coolGreenNav, R.style.coolBlackNav
+        )
+        val currentGradient = arrayOf(
+            R.drawable.gradient_pink, R.drawable.gradient_blue, R.drawable.gradient_purple,
+            R.drawable.gradient_green, R.drawable.gradient_black
+        )
+        var sortOrder: Int = 0
+        val sortingList = arrayOf(
+            MediaStore.Audio.Media.DATE_ADDED + " DESC", MediaStore.Audio.Media.TITLE,
+            MediaStore.Audio.Media.SIZE + " DESC"
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,6 +96,8 @@ class MainActivity : AppCompatActivity() {
         binding.musicRV.setHasFixedSize(true)
         binding.musicRV.setItemViewCacheSize(13)
         binding.musicRV.layoutManager = LinearLayoutManager(this@MainActivity)
+        val sortEditor = getSharedPreferences("SORTING", MODE_PRIVATE)
+        sortOrder = sortEditor.getInt("sortOrder", 0)
         musicListMA = getAllAudio()
         musicAdapter = MusicAdapter(this@MainActivity, musicListMA)
         "Total song: ${musicAdapter.itemCount}".also { binding.totalSongTV.text = it }
@@ -116,7 +132,7 @@ class MainActivity : AppCompatActivity() {
             MediaStore.Audio.Media.ALBUM_ID
         )
         return contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, projection, selection,
-            null, MediaStore.Audio.Media.DATE_ADDED + " DESC", null)
+            null, sortingList[sortOrder], null)
     }
 
     @SuppressLint("Range")
@@ -219,6 +235,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.search_view_menu, menu)
+        // for setting gradient
+        findViewById<LinearLayout>(R.id.linearLayoutNav)?.setBackgroundResource(currentGradient[themeIndex])
         val searchView = menu?.findItem(R.id.searchView)?.actionView as SearchView
         onClickSearch(searchView)
         return super.onCreateOptionsMenu(menu)
@@ -248,6 +266,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         storingFavoriteData()
+        storingSortData()
     }
 
     override fun onDestroy() {
@@ -284,5 +303,15 @@ class MainActivity : AppCompatActivity() {
         val jsonStringPlaylist = GsonBuilder().create().toJson(PlaylistActivity.musicPlaylist)
         editor.putString("MusicPlaylist", jsonStringPlaylist)
         editor.apply()
+    }
+
+    fun storingSortData() {
+        val sortEditor = getSharedPreferences("SORTING", MODE_PRIVATE)
+        val sortValue = sortEditor.getInt("sortOrder", 0)
+        if (sortOrder != sortValue) {
+            sortOrder = sortValue
+            musicListMA = getAllAudio()
+            musicAdapter.updateMusicList(musicListMA)
+        }
     }
 }

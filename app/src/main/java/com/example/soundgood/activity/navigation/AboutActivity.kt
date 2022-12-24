@@ -16,7 +16,7 @@ class AboutActivity : AppCompatActivity() {
     }
 
     private fun initializedLayout() {
-        setTheme(MainActivity.currentTheme[MainActivity.themeIndex])
+        setTheme(MainActivity.currentThemeNav[MainActivity.themeIndex])
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.title = "About"

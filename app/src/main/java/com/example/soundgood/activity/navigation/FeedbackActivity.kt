@@ -17,7 +17,7 @@ class FeedbackActivity : AppCompatActivity() {
     }
 
     private fun initializedLayout() {
-        setTheme(MainActivity.currentTheme[MainActivity.themeIndex])
+        setTheme(MainActivity.currentThemeNav[MainActivity.themeIndex])
         binding = ActivityFeedbackBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.title = "Feedback"

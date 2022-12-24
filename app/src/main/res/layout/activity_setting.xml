@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     android:orientation="vertical"
     tools:context=".activity.navigation.SettingActivity">
 
@@ -15,9 +14,14 @@
         android:background="@color/white"
         android:gravity="center"
         android:text="@string/set_theme"
-        android:textStyle="normal"
         android:textColor="@color/black"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:textStyle="normal" />
+
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/black"
+        android:layout_height="1dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,12 +71,17 @@
             android:tint="@color/black" />
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/black"
+        android:layout_height="1dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginVertical="2dp"
         android:background="@color/white"
         android:orientation="horizontal"
-        android:layout_marginVertical="2dp"
         android:paddingHorizontal="16dp">
 
         <TextView
@@ -87,26 +96,29 @@
             android:textSize="18sp"
             tools:ignore="RtlSymmetry" />
 
+
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/sortBtn"
             android:layout_width="50dp"
             android:layout_height="match_parent"
+            android:padding="5dp"
             android:src="@drawable/sort_icon"
-            android:tint="?attr/themeColor"
-            android:padding="5dp"/>
+            android:tint="?attr/themeColor" />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/black"
+        android:layout_height="1dp" />
 
     <TextView
         android:id="@+id/versionName"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/white"
+        android:padding="16dp"
         android:text="@string/version_name"
         android:textColor="@color/black"
-        android:textSize="18sp"
-        android:padding="16dp" />
-
-
-
+        android:textSize="18sp" />
 </LinearLayout>
