@@ -16,7 +16,7 @@ class AboutActivity : AppCompatActivity() {
     }
 
     private fun initializedLayout() {
-        setTheme(MainActivity.currentThemeNav[MainActivity.themeIndex])
+        setTheme(MainActivity.currentTheme[MainActivity.themeIndex])
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.title = "About"
@@ -31,6 +31,6 @@ class AboutActivity : AppCompatActivity() {
     }
 
     private fun initializedListeners() {
-
+        binding.backBtnAA.setOnClickListener { finish() }
     }
 }

@@ -34,7 +34,8 @@
             android:background="@drawable/custom_search_view"
             android:focusable="false"
             app:iconifiedByDefault="false"
-            android:layout_margin="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
             app:queryHint="@string/search_song"
             app:searchIcon="@drawable/search_icon" />
 
@@ -44,7 +45,7 @@
         android:id="@+id/selectionRV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:paddingBottom="50dp"
         android:scrollbarThumbVertical="@drawable/scroll_bar_icon"
         android:scrollbars="vertical"

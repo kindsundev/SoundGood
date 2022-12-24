@@ -26,7 +26,7 @@
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/drawable/shuffle_icon.xml" value="0.1665" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/drawable/splash_screen.xml" value="0.1" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/drawable/timer_icon.xml" value="0.1095" />
-        <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/activity_about.xml" value="0.2" />
+        <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/activity_about.xml" value="0.536" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/activity_favorite.xml" value="0.20526315789473684" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/activity_feedback.xml" value="0.2" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/activity_main.xml" value="0.2" />
@@ -34,14 +34,14 @@
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/activity_playlist.xml" value="0.20526315789473684" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/activity_playlist_detail.xml" value="0.2" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/activity_selection.xml" value="0.2" />
-        <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/activity_setting.xml" value="0.2" />
+        <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/activity_setting.xml" value="0.4" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/add_playlist_dialog.xml" value="0.19914529914529913" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/bottom_sheet_dialog.xml" value="0.2" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/favorite_view.xml" value="0.2" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/fragment_now_playing.xml" value="0.2" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/music_view.xml" value="0.2" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/nav_header.xml" value="0.2" />
-        <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/playlist_view.xml" value="0.4" />
+        <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/layout/playlist_view.xml" value="0.1" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/menu/nav_menu.xml" value="0.2" />
         <entry key="..\:/Workspace/Project/SoundGood/app/src/main/res/menu/search_view_menu.xml" value="0.2" />
       </map>

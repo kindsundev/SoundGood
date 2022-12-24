@@ -7,14 +7,13 @@
     app:cardCornerRadius="15dp"
     android:layout_margin="10dp"
     app:strokeColor="?attr/themeColor"
-    app:strokeWidth="2dp">
+    app:strokeWidth="1dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/playlistImg"
             android:layout_width="170dp"
             android:layout_height="130dp"
             android:src="@drawable/sound_good_icon_slash_screen"
-            app:shapeAppearanceOverlay="@style/curved"
             android:contentDescription="@string/song_img"/>
 
         <TextView

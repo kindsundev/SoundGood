@@ -4,14 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
     android:orientation="vertical"
     tools:context=".activity.navigation.FeedbackActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/themeColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/backBtnFA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="15dp"
+            android:backgroundTint="@android:color/transparent"
+            android:contentDescription="@string/back_btn"
+            android:padding="5dp"
+            android:src="@drawable/back_icon"
+            app:tint="@android:color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="50dp"
+            android:contentDescription="@string/feedback"
+            android:gravity="center"
+            android:text="@string/feedback"
+            android:textColor="@color/white"
+            android:textSize="23sp" />
+    </LinearLayout>
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/topicFA"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:layout_margin="10dp"
         android:gravity="center|start"
         android:hint="@string/topic_feedback"
         android:inputType="textEmailSubject"
@@ -21,6 +53,7 @@
         android:id="@+id/emailFA"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:layout_margin="10dp"
         android:gravity="center|start"
         android:hint="@string/email_feedback"
         android:inputType="textEmailAddress"
@@ -30,6 +63,7 @@
         android:id="@+id/feedbackMsgFA"
         android:layout_width="match_parent"
         android:layout_height="250dp"
+        android:layout_margin="10dp"
         android:gravity="center|start"
         android:hint="@string/feedback"
         android:paddingHorizontal="16dp" />
@@ -39,6 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_margin="10dp"
         android:backgroundTint="@color/white"
         android:text="@string/send"
         android:textColor="@color/black" />

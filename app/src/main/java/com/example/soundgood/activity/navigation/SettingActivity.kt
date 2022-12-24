@@ -21,7 +21,7 @@ class SettingActivity : AppCompatActivity() {
     }
 
     private fun initializedLayout() {
-        setTheme(MainActivity.currentThemeNav[MainActivity.themeIndex])
+        setTheme(MainActivity.currentTheme[MainActivity.themeIndex])
         binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.title = "Setting"
@@ -43,6 +43,7 @@ class SettingActivity : AppCompatActivity() {
         binding.coolBlackTheme.setOnClickListener { saveTheme(4) }
         binding.versionName.text = setVersionDetail()
         binding.sortBtn.setOnClickListener { onClickSort() }
+        binding.backBtnSA.setOnClickListener { finish() }
     }
 
     private fun saveTheme(index: Int) {

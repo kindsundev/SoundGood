@@ -17,7 +17,7 @@ class FeedbackActivity : AppCompatActivity() {
     }
 
     private fun initializedLayout() {
-        setTheme(MainActivity.currentThemeNav[MainActivity.themeIndex])
+        setTheme(MainActivity.currentTheme[MainActivity.themeIndex])
         binding = ActivityFeedbackBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.title = "Feedback"
@@ -28,5 +28,7 @@ class FeedbackActivity : AppCompatActivity() {
             Toast.makeText(this, "Thanks for the feedback!!", Toast.LENGTH_SHORT).show()
             finish()
         }
+
+        binding.backBtnFA.setOnClickListener { finish() }
     }
 }
