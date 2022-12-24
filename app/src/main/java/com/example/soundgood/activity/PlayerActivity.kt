@@ -5,6 +5,7 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import android.database.Cursor
 import android.graphics.Color
 import android.media.AudioManager
 import android.media.MediaPlayer
@@ -12,6 +13,7 @@ import android.media.audiofx.AudioEffect
 import android.net.Uri
 import android.os.Bundle
 import android.os.IBinder
+import android.provider.MediaStore
 import android.widget.LinearLayout
 import android.widget.SeekBar
 import android.widget.Toast
@@ -60,9 +62,46 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
         setTheme(MainActivity.currentTheme[MainActivity.themeIndex])
         binding = ActivityPlayerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        initializedLayout()
+        if (intent.data?.scheme.contentEquals("content")) {
+            formatContent()
+        } else {
+            initializedLayout()
+        }
         initializedListener()
+    }
+
+    private fun formatContent() {
+        initializedService()
+        musicListPA = ArrayList()
+        musicListPA.add(getMusicDetails(intent.data!!))
+        try {
+            Glide.with(this)
+                .load(getImgArt(musicListPA[songPosition].path))
+                .apply(RequestOptions().placeholder(R.drawable.sound_good_icon_slash_screen).centerCrop())
+                .into(binding.songImgPA)
+        } catch (e: Exception) {
+            return
+        }
+        binding.songNamePA.text = musicListPA[songPosition].title
+    }
+
+    private fun getMusicDetails(contentUri: Uri): Music {
+        var cursor: Cursor? = null
+        try {
+            val projection = arrayOf(MediaStore.Audio.Media.DATA, MediaStore.Audio.Media.DURATION)
+            cursor = this.contentResolver.query(contentUri, projection, null, null, null)
+            val dataColumn = cursor?.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA)
+            val durationColumn = cursor?.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION)
+            cursor!!.moveToFirst()
+            val path = dataColumn?.let { cursor.getString(it) }
+            val duration = durationColumn?.let { cursor.getLong(it) }!!
+            return Music(
+                "Unknown", path.toString(), "Unknown",
+                "Unknown", duration, "Unknown", path.toString()
+            )
+        } finally {
+            cursor?.close()
+        }
     }
 
     private fun initializedLayout() {
@@ -378,6 +417,13 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
             setLayout()
         } catch (e: Exception) {
             return
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (musicListPA[songPosition].id == "Unknown" && !isPlaying) {
+            exitApplication()
         }
     }
 }
