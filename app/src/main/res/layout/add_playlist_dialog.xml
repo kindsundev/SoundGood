@@ -12,9 +12,9 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="10dp"
         android:hint="@string/playlist_name"
-        app:boxStrokeColor="@color/cool_pink"
+        app:boxStrokeColor="?attr/themeColor"
         app:startIconDrawable="@drawable/playlist_icon"
-        app:startIconTint="@color/cool_pink">
+        app:startIconTint="?attr/themeColor">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/playlistName"
@@ -33,9 +33,9 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="10dp"
         android:hint="@string/user_name"
-        app:boxStrokeColor="@color/cool_pink"
+        app:boxStrokeColor="?attr/themeColor"
         app:startIconDrawable="@drawable/playlist_icon"
-        app:startIconTint="@color/cool_pink">
+        app:startIconTint="?attr/themeColor">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/yourName"

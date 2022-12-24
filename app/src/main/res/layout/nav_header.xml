@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="170dp"
     android:layout_marginTop="90dp"
-    android:background="@color/cool_pink"
+    android:background="?attr/themeColor"
     android:orientation="vertical"
     android:padding="16dp">
 

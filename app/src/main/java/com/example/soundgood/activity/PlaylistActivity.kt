@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.soundgood.MainActivity
 import com.example.soundgood.R
 import com.example.soundgood.adapter.PlaylistAdapter
 import com.example.soundgood.databinding.ActivityPlaylistBinding
@@ -27,13 +28,12 @@ class PlaylistActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         initializedLayout()
         initializedListeners()
     }
 
     private fun initializedLayout() {
-        setTheme(R.style.coolPink)
+        setTheme(MainActivity.currentTheme[MainActivity.themeIndex])
         binding = ActivityPlaylistBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initPlaylistAdapter()

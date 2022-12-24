@@ -23,5 +23,4 @@
         android:textColor="@color/black"
         android:text="@string/song_name"/>
 
-
 </LinearLayout>

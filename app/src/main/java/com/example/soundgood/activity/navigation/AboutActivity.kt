@@ -2,7 +2,7 @@ package com.example.soundgood.activity.navigation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.soundgood.R
+import com.example.soundgood.MainActivity
 import com.example.soundgood.databinding.ActivityAboutBinding
 
 class AboutActivity : AppCompatActivity() {
@@ -16,7 +16,7 @@ class AboutActivity : AppCompatActivity() {
     }
 
     private fun initializedLayout() {
-        setTheme(R.style.coolPinkNav)
+        setTheme(MainActivity.currentTheme[MainActivity.themeIndex])
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.title = "About"

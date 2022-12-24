@@ -10,6 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.soundgood.MainActivity
 import com.example.soundgood.R
 import com.example.soundgood.activity.PlayerActivity
 import com.example.soundgood.databinding.FragmentNowPlayingBinding
@@ -26,6 +27,7 @@ class NowPlaying : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        requireContext().theme.applyStyle(MainActivity.currentTheme[MainActivity.themeIndex], true)
         val view = inflater.inflate(R.layout.fragment_now_playing, container, false)
         binding = FragmentNowPlayingBinding.bind(view)
         binding.root.visibility = View.INVISIBLE
@@ -37,9 +39,7 @@ class NowPlaying : Fragment() {
         binding.playPauseBtnNP.setOnClickListener {
             if (PlayerActivity.isPlaying) pauseMusic() else playMusic()
         }
-
         binding.nextBtnNP.setOnClickListener { onClickNext() }
-
         binding.root.setOnClickListener { onClickNowPlayingBottom() }
     }
 

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:cardCornerRadius="15dp"
     android:layout_margin="10dp"
-    app:strokeColor="@color/cool_pink"
+    app:strokeColor="?attr/themeColor"
     app:strokeWidth="2dp">
 
         <com.google.android.material.imageview.ShapeableImageView
@@ -25,11 +26,13 @@
             android:marqueeRepeatLimit="marquee_forever"
             android:textColor="@color/black"
             android:textSize="18sp"
+            android:paddingStart="8dp"
             android:gravity="center"
             android:textAlignment="center"
             android:layout_marginTop="130dp"
             android:layout_width="130dp"
-            android:layout_height="40dp" />
+            android:layout_height="40dp"
+            tools:ignore="RtlSymmetry" />
 
         <ImageButton
             android:id="@+id/playlistDeleteBtn"
@@ -41,6 +44,6 @@
             android:src="@drawable/delete_icon"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            app:tint="@color/cool_pink" />
+            app:tint="?attr/themeColor" />
 
 </com.google.android.material.card.MaterialCardView>

@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.soundgood.MainActivity
-import com.example.soundgood.R
 import com.example.soundgood.adapter.MusicAdapter
 import com.example.soundgood.databinding.ActivitySelectionBinding
 
@@ -22,7 +21,7 @@ class SelectionActivity : AppCompatActivity() {
     }
 
     private fun initializedLayout() {
-        setTheme(R.style.coolPink)
+        setTheme(MainActivity.currentTheme[MainActivity.themeIndex])
         binding = ActivitySelectionBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initSelectionAdapter()

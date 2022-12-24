@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.soundgood.MainActivity
 import com.example.soundgood.R
 import com.example.soundgood.adapter.MusicAdapter
 import com.example.soundgood.databinding.ActivityPlaylistDetailBinding
@@ -34,11 +35,15 @@ class PlaylistDetailActivity : AppCompatActivity() {
     }
 
     private fun initializedLayout() {
-        setTheme(R.style.coolPink)
+        setTheme(MainActivity.currentTheme[MainActivity.themeIndex])
         binding = ActivityPlaylistDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        PlaylistActivity.musicPlaylist.ref[currentPlaylistPosition].playlist =
-            checkPlaylist(playlist = PlaylistActivity.musicPlaylist.ref[currentPlaylistPosition].playlist)
+        try {
+            PlaylistActivity.musicPlaylist.ref[currentPlaylistPosition].playlist =
+                checkPlaylist(playlist = PlaylistActivity.musicPlaylist.ref[currentPlaylistPosition].playlist)
+        } catch (e: Exception) {
+            return
+        }
         initAdapter()
     }
 

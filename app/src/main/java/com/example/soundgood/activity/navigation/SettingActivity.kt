@@ -6,7 +6,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.soundgood.BuildConfig
 import com.example.soundgood.MainActivity
-import com.example.soundgood.R
 import com.example.soundgood.databinding.ActivitySettingBinding
 import com.example.soundgood.model.exitApplication
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -22,7 +21,7 @@ class SettingActivity : AppCompatActivity() {
     }
 
     private fun initializedLayout() {
-        setTheme(R.style.coolPinkNav)
+        setTheme(MainActivity.currentTheme[MainActivity.themeIndex])
         binding = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.title = "Setting"
@@ -46,16 +45,15 @@ class SettingActivity : AppCompatActivity() {
     }
 
     private fun saveTheme(index: Int) {
-        if (MainActivity.themeIndex == index) {
-
+        if (MainActivity.themeIndex != index) {
+            val editor = getSharedPreferences("THEMES", MODE_PRIVATE).edit()
+            editor.putInt("themeIndex", index)
+            editor.apply()
             val builder = MaterialAlertDialogBuilder(this)
             builder.setTitle("Apply Theme")
                 .setMessage("Do you want to apply theme?")
                 .setNegativeButton("No") {dialog, _ -> dialog.dismiss()}
                 .setPositiveButton("Yes"){_, _ ->
-                    val editor = getSharedPreferences("THEMES", MODE_PRIVATE).edit()
-                    editor.putInt("themeIndex", index)
-                    editor.apply()
                     exitApplication()
                 }
             val customDialog = builder.create()

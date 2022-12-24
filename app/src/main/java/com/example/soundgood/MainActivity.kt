@@ -45,6 +45,10 @@ class MainActivity : AppCompatActivity() {
         lateinit var musicListSearch: ArrayList<Music>
         var search: Boolean = false
         var themeIndex: Int = 0
+        val currentTheme = arrayOf(R.style.coolPink, R.style.coolBlue, R.style.coolPurple,
+                                    R.style.coolGreen, R.style.coolBlack)
+        val currentThemeNav = arrayOf(R.style.coolPinkNav, R.style.coolBlueNav, R.style.coolPurpleNav,
+                                    R.style.coolGreenNav, R.style.coolBlackNav)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         val themeEditor = getSharedPreferences("THEMES", MODE_PRIVATE)
         themeIndex = themeEditor.getInt("themeIndex", 0)
         search = false
-        setTheme(R.style.coolPinkNav)
+        setTheme(currentThemeNav[themeIndex])
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initializedNavDrawer()

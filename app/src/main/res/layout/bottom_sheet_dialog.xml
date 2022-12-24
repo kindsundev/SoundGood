@@ -19,7 +19,7 @@
             android:layout_margin="8dp"
             android:contentDescription="@string/min_15"
             android:src="@drawable/timer_icon"
-            app:tint="@color/cool_pink" />
+            app:tint="?attr/themeColor" />
 
         <TextView
             android:layout_width="match_parent"
@@ -42,7 +42,7 @@
             android:layout_margin="8dp"
             android:contentDescription="@string/min_30"
             android:src="@drawable/timer_icon"
-            app:tint="@color/cool_pink" />
+            app:tint="?attr/themeColor" />
 
         <TextView
             android:layout_width="match_parent"
@@ -65,7 +65,7 @@
             android:layout_margin="8dp"
             android:contentDescription="@string/min_60"
             android:src="@drawable/timer_icon"
-            app:tint="@color/cool_pink" />
+            app:tint="?attr/themeColor" />
 
         <TextView
             android:layout_width="match_parent"
