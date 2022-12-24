@@ -30,7 +30,7 @@
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchViewSA"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:background="@drawable/custom_search_view"
             android:focusable="false"
             app:iconifiedByDefault="false"
