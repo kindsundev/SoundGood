@@ -28,6 +28,7 @@ class MyApplication : Application() {
                 NotificationManager.IMPORTANCE_HIGH
             )
             notificationChannel.description = "This is a important channel for showing song!!"
+            notificationChannel.setSound(null, null);
             val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(notificationChannel)
         }

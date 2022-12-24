@@ -305,7 +305,7 @@ class MainActivity : AppCompatActivity() {
         editor.apply()
     }
 
-    fun storingSortData() {
+    private fun storingSortData() {
         val sortEditor = getSharedPreferences("SORTING", MODE_PRIVATE)
         val sortValue = sortEditor.getInt("sortOrder", 0)
         if (sortOrder != sortValue) {
