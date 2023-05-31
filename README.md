@@ -1,7 +1,9 @@
-# SoundGood
-Music mobile app
+# Sound Good
+Sound Good is an offline music player that allows users to listen to music files on their devices.
 
-## ScreenShort
-<p align="center">
-    <img src="https://user-images.githubusercontent.com/105474421/218306598-f6a5df77-462f-453d-b9a6-476b0c304d36.png" width=50% height=50% alt="Sound Good Demo">
-</p>
+## Features
+- Play, pause, and skip tracks
+- Repeat and shuffle playback, search functionality
+- Equalizer settings, timer, share, and sort songs
+- Create playlists, add songs to favorites
+- Customize the interface with different color themes
